@@ -1,0 +1,71 @@
+
+:root {
+  --primary-color: #007bff;
+  --primary-hover: #0056b3;
+  --success-color: #28a745;
+  --text-color: white;
+  --background-color: #f8f9fa;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  background-color: var(--background-color);
+  padding: 20px;
+  animation: fadeIn 0.8s ease-in-out;
+}
+
+h2 {
+  color: #333;
+  margin-bottom: 20px;
+}
+
+.amount {
+  font-size: 24px;
+  font-weight: bold;
+  color: var(--success-color);
+  margin-bottom: 20px;
+  animation: popIn 0.5s ease-in-out;
+}
+
+.payBtn {
+  padding: 12px 20px;
+  border: none;
+  border-radius: 8px;
+  background-color: var(--primary-color);
+  color: var(--text-color);
+  font-size: 18px;
+  cursor: pointer;
+  width: 80%;
+  transition: background-color 0.3s, transform 0.2s;
+}
+
+.payBtn:hover {
+  background-color: var(--primary-hover);
+  transform: scale(1.05);
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes popIn {
+  0% {
+    transform: scale(0.9);
+    opacity: 0;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
