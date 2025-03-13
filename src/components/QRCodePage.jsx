@@ -1,13 +1,10 @@
-import React, { useRef, useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import html2canvas from "html2canvas";
-import jsPDF from "jspdf";
 import styles from "../styles/QRCodePage.module.css";
 import Header from "./Header";
 
 const QRCodePage = () => {
   const navigate = useNavigate();
-  const pdfRef = useRef();
   const [captcha, setCaptcha] = useState("");
 
   useEffect(() => {
@@ -22,20 +19,6 @@ const QRCodePage = () => {
   const timeData = JSON.parse(localStorage.getItem("timeData")) || {};
   const slot = localStorage.getItem("slot") || "Not Selected";
 
-  const handleDownloadPDF = () => {
-    const input = pdfRef.current;
-    html2canvas(input, { scale: 3, useCORS: true }).then((canvas) => { 
-      const imgData = canvas.toDataURL("image/png");
-  
-      const pdf = new jsPDF("p", "mm", "a4"); 
-      const pdfWidth = pdf.internal.pageSize.getWidth();
-      const pdfHeight = (canvas.height * pdfWidth) / canvas.width;
-  
-      pdf.addImage(imgData, "PNG", 0, 0, pdfWidth, pdfHeight);
-      pdf.save("BookingDetails.pdf");
-      console.log("PDF Ref:", pdfRef.current);
-    }).catch((err) => console.error("PDF Generation Error:", err));
-  };
   const handleReturnHome = () => {
     alert("Thanks for booking!");
     localStorage.clear();
@@ -45,7 +28,7 @@ const QRCodePage = () => {
   return (
     <>
       <Header />
-      <div className={styles.qrContainer} ref={pdfRef}>
+      <div className={styles.qrContainer}>
         <h2>Booking Details</h2>
 
         {userInfo.photo && (
@@ -56,14 +39,13 @@ const QRCodePage = () => {
           <p><strong>Name:</strong> {userInfo.name || "N/A"}</p>
           <p><strong>Email:</strong> {userInfo.email || "N/A"}</p>
           <p><strong>Phone:</strong> {userInfo.phone || "N/A"}</p>
-          <p><strong>Number plate</strong> {userInfo.carNumber || "N/A"}</p>
+          <p><strong>Number plate:</strong> {userInfo.carNumber || "N/A"}</p>
           <p><strong>Location:</strong> {location}</p>
           <p><strong>Spot:</strong> {spot}</p>
           <p><strong>Date:</strong> {timeData.date || "N/A"}</p>
           <p><strong>Time:</strong> {timeData.time || "N/A"}</p>
           <p><strong>Slot:</strong> {slot}</p>
         </div>
-        
 
         <div className={styles.qrCode}>
           <h3>CAPTCHA Code:</h3>
@@ -71,9 +53,6 @@ const QRCodePage = () => {
         </div>
 
         <div className={styles.buttonContainer}>
-          <button className={styles.downloadBtn} onClick={handleDownloadPDF}>
-            Download PDF
-          </button>
           <button className={styles.returnBtn} onClick={handleReturnHome}>
             Return to Home
           </button>

@@ -3,7 +3,7 @@
   "private": true,
   "version": "0.0.0",
   "type": "module",
-  "homepage": "https://jayaram-dev-004.github.io/car-parking",
+  "homepage": "https://jayaram-dev-004.github.io/car-parking/",
   "scripts": {
     "dev": "vite",
     "build": "vite build",

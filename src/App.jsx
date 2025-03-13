@@ -1,4 +1,4 @@
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { HashRouter as Router, Routes, Route } from "react-router-dom";
 import UserInfo from "./components/UserInfo";
 import Location from "./components/Location";
 import Spots from "./components/Spots";
@@ -6,7 +6,7 @@ import Time from "./components/Time";
 import Slots from "./components/Slots";
 import Payment from "./components/Payment";
 import QRCodePage from "./components/QRCodePage";
-import "./App.css"; // Global styles if needed
+import "./App.css"; 
 
 function App() {
   return (

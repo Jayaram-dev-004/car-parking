@@ -5,4 +5,9 @@ import react from '@vitejs/plugin-react'
 export default defineConfig({
   base : "/car-parking/",
   plugins: [react()],
+  build: {
+    rollupOptions: {
+      external: ["html2canvas","jspdf"],
+    },
+  },
 })
